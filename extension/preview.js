@@ -11,7 +11,10 @@
       if (!details.querySelector(":scope > summary")?.contains(image)) return false;
     }
     if (!image.currentSrc && !image.src) return false;
-    if (image.naturalWidth && (image.naturalWidth < 64 || image.naturalHeight < 64)) return false;
+    const rect = image.getBoundingClientRect();
+    if (image.naturalWidth) {
+      if (image.naturalWidth < 64 || image.naturalHeight < 64) return false;
+    } else if (image.complete || rect.width < 64 || rect.height < 64) return false;
     return image.getClientRects().length > 0 && getComputedStyle(image).visibility !== "hidden";
   }
 
@@ -133,8 +136,11 @@
     let zoomed = false;
     const previousFocus = document.activeElement;
     const scrollPosition = [window.scrollX, window.scrollY];
-    const oldOverflow = document.documentElement.style.getPropertyValue("overflow");
-    const oldOverflowPriority = document.documentElement.style.getPropertyPriority("overflow");
+    const oldOverflow = ["overflow-x", "overflow-y"].map(property => ({
+      property,
+      value: document.documentElement.style.getPropertyValue(property),
+      priority: document.documentElement.style.getPropertyPriority(property)
+    }));
 
     function restoreImage() {
       if (!mounted) return;
@@ -153,8 +159,10 @@
       restoreImage();
       dialog.close();
       host.remove();
-      if (oldOverflow) document.documentElement.style.setProperty("overflow", oldOverflow, oldOverflowPriority);
-      else document.documentElement.style.removeProperty("overflow");
+      for (const { property, value, priority } of oldOverflow) {
+        if (value) document.documentElement.style.setProperty(property, value, priority);
+        else document.documentElement.style.removeProperty(property);
+      }
       const focusTarget = trigger?.isConnected ? trigger : previousFocus;
       if (focusTarget instanceof HTMLElement && focusTarget.isConnected) focusTarget.focus({ preventScroll: true });
       window.scrollTo(...scrollPosition);
@@ -247,7 +255,8 @@
     if (viewer || !pageIsConversation() || event.defaultPrevented) return;
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const target = event.target instanceof Element ? event.target : null;
-    const image = target?.closest("img") || target?.closest("a")?.querySelector("img");
+    const anchor = target?.closest("a");
+    const image = target?.closest("img") || (anchor && !anchor.textContent.trim() ? anchor.querySelector("img") : null);
     if (!isScreenshot(image)) return;
     const trigger = image.closest("a") || image;
     event.preventDefault();

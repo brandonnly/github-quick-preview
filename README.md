@@ -19,7 +19,7 @@ Images follow document order, including before/after tables and comments. Badges
 
 Requires Firefox 142 or newer, or a compatible Zen version.
 
-Version 1.0.1 has been submitted to Mozilla for unlisted signing and is awaiting review. Signed packages will be available on [GitHub Releases](https://github.com/brandonnly/github-quick-preview/releases). Download a signed `.xpi`, open `about:addons`, and choose **Install Add-on From File** from the gear menu. Building from source produces an unsigned development package.
+A signed version 1.0.2 release is being prepared. Signed packages will be available on [GitHub Releases](https://github.com/brandonnly/github-quick-preview/releases). Download a signed `.xpi`, open `about:addons`, and choose **Install Add-on From File** from the gear menu. Building from source produces an unsigned development package.
 
 For a temporary development install, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, and select `extension/manifest.json`. Temporary installs disappear when the browser exits.
 
@@ -42,10 +42,10 @@ The packaging script uses Python 3's standard library and writes `dist/github-qu
 To test the viewer, run:
 
 ```sh
-python3 -m http.server 8765 --bind 127.0.0.1
+python3 scripts/test-server.py
 ```
 
-Open `http://127.0.0.1:8765/tests/fixture.html` and try the controls. To run the 14 automated browser checks, evaluate the contents of `tests/verify.js` in that page's developer console. The fixture uses generated images and changes its local URL to imitate a pull request route. See [VERIFICATION.md](VERIFICATION.md) for coverage.
+Open `http://127.0.0.1:8765/tests/fixture.html` and try the controls. To run the automated browser checks, evaluate the contents of `tests/verify.js` in that page's developer console. The fixture uses local SVG images over HTTP and changes its URL to imitate a pull request route. The test server counts image requests when they arrive, so the network check detects requests before they finish. See [VERIFICATION.md](VERIFICATION.md) for coverage.
 
 ## Signing releases
 

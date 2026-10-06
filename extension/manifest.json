@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "GitHub Quick Preview",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Brandon Ly",
   "homepage_url": "https://github.com/brandonnly/github-quick-preview",
   "description": "Preview GitHub PR screenshots in place. Use the arrow keys to browse and Escape to close.",
