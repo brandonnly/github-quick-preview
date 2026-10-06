@@ -19,7 +19,7 @@ Images follow document order, including before/after tables and comments. Badges
 
 Requires Firefox 142 or newer, or a compatible Zen version.
 
-Signed packages will be available on [GitHub Releases](https://github.com/brandonnly/github-quick-preview/releases). Download a signed `.xpi`, open `about:addons`, and choose **Install Add-on From File** from the gear menu. Mozilla signing is in progress; building from source produces an unsigned development package.
+Version 1.0.1 has been submitted to Mozilla for unlisted signing and is awaiting review. Signed packages will be available on [GitHub Releases](https://github.com/brandonnly/github-quick-preview/releases). Download a signed `.xpi`, open `about:addons`, and choose **Install Add-on From File** from the gear menu. Building from source produces an unsigned development package.
 
 For a temporary development install, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, and select `extension/manifest.json`. Temporary installs disappear when the browser exits.
 
