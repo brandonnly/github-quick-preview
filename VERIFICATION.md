@@ -15,6 +15,8 @@ All 25 browser checks in `tests/verify.js` passed against `tests/fixture.html`. 
 
 The new regression checks were also run with each fixed bug deliberately reintroduced in memory. Each failed at the intended assertion. Injecting an extra image request failed the network check. A separate trusted Enter/Escape check opened and closed the viewer without navigation and restored focus to the screenshot link.
 
-The original version was tested in Zen on a GitHub pull request with 32 eligible screenshots. Opening a screenshot, navigating in both directions, and closing the viewer kept the same tab and restored focus to the screenshot link. Those checks passed with both a temporary install and a persistent install. Version 1.0.2's automated checks ran in the collaborative Chromium browser; the reviewed update has not yet been installed in Zen.
+The original version was tested in Zen on a GitHub pull request with 32 eligible screenshots. Opening a screenshot, navigating in both directions, and closing the viewer kept the same tab and restored focus to the screenshot link. Those checks passed with both a temporary install and a persistent install. Version 1.0.2's automated checks ran in the collaborative Chromium browser.
+
+Mozilla approved and signed version 1.0.2 for unlisted distribution. The signed archive contains the reviewed JavaScript unchanged and an equivalent manifest; Mozilla reformatted the JSON during signing. The signed package was installed in Zen 1.22.3b through **Install Add-on From File…**, replacing the unsigned copy. Zen reports version 1.0.2 as signed, active, and enabled with `xpinstall.signatures.required` restored to its default value of `true`.
 
 See the README for commands to repeat validation and run the fixture locally.
