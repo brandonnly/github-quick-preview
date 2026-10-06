@@ -1,0 +1,23 @@
+README.md
+  s_db749aa7a16813::t_52352dd60fac7f 22
+  s_db749aa7a16813::t_aadd9e5fb15aae 23-26,28-30,40-41,48
+  s_db749aa7a16813::t_df201536582ab8 64-65
+VERIFICATION.md
+  s_db749aa7a16813::t_df201536582ab8 18-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7607a9081aaedb2b262aab39bbc2d3ca39271ffa",
+  "prompts": {},
+  "sessions": {
+    "s_db749aa7a16813": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a10eb1-fe8a-74c2-aa0d-f7afc24e3af6",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Brandon Ly <26473824+brandonnly@users.noreply.github.com>"
+    }
+  }
+}
