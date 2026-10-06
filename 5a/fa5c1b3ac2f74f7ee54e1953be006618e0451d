@@ -1,0 +1,33 @@
+README.md
+  s_db749aa7a16813::t_012119e7e90f50 1-58
+extension/preview.js
+  s_507fd6aa999d4a::t_6827e078b34a08 1-257
+tests/fixture.html
+  s_507fd6aa999d4a::t_0bf6541e3cd2fe 1-37
+tests/verify.js
+  s_507fd6aa999d4a::t_712d258c692f9d 1-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5afa5c1b3ac2f74f7ee54e1953be006618e0451d",
+  "prompts": {},
+  "sessions": {
+    "s_507fd6aa999d4a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e9b8ca74-320e-490a-aafc-7c30ede7449d",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Brandon Ly <26473824+brandonnly@users.noreply.github.com>"
+    },
+    "s_db749aa7a16813": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a10eb1-fe8a-74c2-aa0d-f7afc24e3af6",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Brandon Ly <26473824+brandonnly@users.noreply.github.com>"
+    }
+  }
+}
