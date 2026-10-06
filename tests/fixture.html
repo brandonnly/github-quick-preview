@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>GitHub Quick Preview checks</title>
+<style>
+  body { margin: 0; background: #0d1117; color: #e6edf3; font: 16px system-ui; }
+  article { width: 700px; max-width: 90%; margin: 100px auto; }
+  table { width: 100%; } td { width: 50%; }
+  img { max-width: 100%; vertical-align: middle; }
+  a:focus-visible { outline: 2px solid #80bfff; }
+</style>
+<article class="markdown-body">
+  <h1>Screenshot gallery</h1>
+  <table><tr><th>Before</th><th>After</th></tr><tr>
+    <td><a id="before" href="#before"><img id="one" alt="Before desktop" width="300"></a></td>
+    <td><a id="after" href="#after"><img id="two" alt="After desktop" width="300"></a></td>
+  </tr></table>
+  <p><a id="mobile" href="#mobile"><img id="three" alt="Mobile" width="140"></a></p>
+  <img id="badge" alt="Build passing"><img class="emoji" id="emoji" alt="emoji">
+  <details><summary>Hidden</summary><img id="hidden" alt="Hidden screenshot"></details>
+  <div style="height:1500px"></div>
+</article>
+<script>
+  history.replaceState({}, "", "/example/repository/pull/1");
+  window.fixtureReady = (async () => {
+    for (const [i, image] of [...document.querySelectorAll("img")].entries()) {
+      const small = ["badge", "emoji"].includes(image.id);
+      const width = small ? 40 : i === 2 ? 390 : 1440;
+      const height = small ? 20 : 900;
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><rect width="100%" height="100%" fill="${["#314d6c", "#245944", "#725c39"][i%3]}"/><text x="40" y="90" fill="white" font-size="40">${image.alt}</text></svg>`;
+      image.src = "data:image/svg+xml," + encodeURIComponent(svg);
+      await image.decode();
+    }
+  })();
+</script>
+<script src="/extension/preview.js"></script>
+</html>
