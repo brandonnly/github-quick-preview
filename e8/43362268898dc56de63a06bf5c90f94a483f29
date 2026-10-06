@@ -1,0 +1,45 @@
+VERIFICATION.md
+  s_db749aa7a16813::t_ecbe91cc214f2c 3,5,7,9,11,13-14,16-18
+CHANGELOG.md
+  s_db749aa7a16813::t_ecbe91cc214f2c 1-12
+extension/preview.js
+  s_db749aa7a16813::t_d2bd5209223ebf 258-259
+  s_db749aa7a16813::t_001a494b13f61f 14-17,139-143,162-165
+scripts/test-server.py
+  s_db749aa7a16813::t_001a494b13f61f 1-36
+tests/fixture.html
+  s_db749aa7a16813::t_001a494b13f61f 15-16,18-20,25
+tests/images/before.svg
+  s_db749aa7a16813::t_001a494b13f61f 1
+tests/images/mobile.svg
+  s_db749aa7a16813::t_001a494b13f61f 1
+tests/images/badge.svg
+  s_db749aa7a16813::t_001a494b13f61f 1
+tests/verify.js
+  s_db749aa7a16813::t_93198e13199133 10-20
+  s_db749aa7a16813::t_72be5f3602aa93 21-25,30-31,37-39,46-47,52-53,74-127
+  s_db749aa7a16813::t_d2bd5209223ebf 56-57
+README.md
+  s_db749aa7a16813::t_72be5f3602aa93 45,48
+  s_db749aa7a16813::t_f6b8b6e18927aa 22
+tests/images/after.svg
+  s_db749aa7a16813::t_001a494b13f61f 1
+extension/manifest.json
+  s_db749aa7a16813::t_d2bd5209223ebf 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e843362268898dc56de63a06bf5c90f94a483f29",
+  "prompts": {},
+  "sessions": {
+    "s_db749aa7a16813": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a10eb1-fe8a-74c2-aa0d-f7afc24e3af6",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Brandon Ly <26473824+brandonnly@users.noreply.github.com>"
+    }
+  }
+}
