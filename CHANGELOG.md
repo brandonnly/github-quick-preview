@@ -1,5 +1,11 @@
 # Changelog
 
+## Chromium 1.0.2
+
+- Add a Manifest V3 build for Dia and Chrome using the existing viewer unchanged.
+- Package a ZIP for distribution and a folder for local installation.
+- Document installation and manual updates for Chromium browsers.
+
 ## 1.0.2
 
 - Restore both page overflow axes and their original priorities when the viewer closes.

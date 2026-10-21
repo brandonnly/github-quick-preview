@@ -1,6 +1,6 @@
 # GitHub Quick Preview
 
-A Firefox extension for Zen and Firefox. Click a screenshot in a GitHub pull request or issue to open a full-screen preview on the current page.
+A browser extension for Dia, Chrome, Zen, and Firefox. Click a screenshot in a GitHub pull request or issue to open a full-screen preview on the current page.
 
 The viewer uses the existing image element and leaves its URL untouched. It restores the image when you navigate or close, without opening a tab or preloading the gallery. GitHub may still load images that were not loaded yet.
 
@@ -17,9 +17,23 @@ Images follow document order, including before/after tables and comments. Badges
 
 ## Install
 
+### Dia and Chrome
+
+1. Download the [Chromium 1.0.2 ZIP](https://github.com/brandonnly/github-quick-preview/releases/download/chromium-v1.0.2/github-quick-preview-1.0.2-chromium.zip).
+2. Extract the ZIP into a folder you intend to keep, such as `Documents/GitHub Quick Preview`. The folder should contain `manifest.json` and `preview.js`.
+3. In Dia or Chrome, open `chrome://extensions`. Dia may display this as `dia://extensions`.
+4. Enable **Developer mode**, click **Load unpacked**, and select the extracted folder.
+5. Reload any GitHub pull request or issue tabs that were already open, then click a screenshot.
+
+Keep Developer mode enabled and leave the extracted folder in place. The local extension stays installed after the browser quits. If you use separate browser profiles, load it in each profile where you want screenshot previews.
+
+To update, replace the files in that same folder with the newer Chromium release, click the extension's **Reload** button on `chrome://extensions`, and reload your GitHub tabs. Updates are installed manually. The Chromium build uses Manifest V3 and the same viewer code as the Firefox build. See [Chrome's local extension installation guide](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked) for the browser's installation flow.
+
+### Zen and Firefox
+
 Requires Firefox 142 or newer, or a compatible Zen version.
 
-1. Download the [Mozilla-signed 1.0.2 installer](https://github.com/brandonnly/github-quick-preview/releases/download/v1.0.2/github-quick-preview-1.0.2-signed.xpi) from [GitHub Releases](https://github.com/brandonnly/github-quick-preview/releases/latest).
+1. Download the [Mozilla-signed 1.0.2 installer](https://github.com/brandonnly/github-quick-preview/releases/download/v1.0.2/github-quick-preview-1.0.2-signed.xpi).
 2. In Zen or Firefox, open `about:addons`.
 3. Open the gear menu and choose **Install Add-on From File…**, then select the downloaded `.xpi`.
 4. Confirm the installation. The extension needs access to `github.com` to display screenshot previews.
@@ -27,7 +41,7 @@ Requires Firefox 142 or newer, or a compatible Zen version.
 
 This install stays installed when the browser quits. Keep extension signature verification enabled; the signed installer works with the normal browser settings. If you previously set `xpinstall.signatures.required` to `false` in Zen, install the signed version first, then restore it to `true` in `about:config`.
 
-To update, download the newest signed installer from GitHub Releases and install it the same way. The stable extension ID lets it replace your existing copy. Updates are installed manually.
+To update, download the newest signed Firefox installer from [GitHub Releases](https://github.com/brandonnly/github-quick-preview/releases) and install it the same way. The stable extension ID lets it replace your existing copy. Updates are installed manually.
 
 ## Privacy
 
@@ -35,9 +49,9 @@ The extension runs on `github.com` and activates on pull request and issue pages
 
 ## Develop and package
 
-The extension is plain JavaScript with no runtime dependencies or build step.
+The viewer is plain JavaScript with no runtime dependencies. Both browser builds share `extension/preview.js` and the version in `extension/manifest.json`.
 
-For a temporary development install, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, and select `extension/manifest.json`. Reload your GitHub tab after loading the extension. Temporary installs disappear when the browser exits.
+For Firefox development, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on**, and select `extension/manifest.json`. Reload your GitHub tab after loading the extension. Temporary installs disappear when the browser exits.
 
 ```sh
 node --check extension/preview.js
@@ -45,7 +59,15 @@ npx --yes web-ext lint --source-dir extension
 python3 scripts/package.py
 ```
 
-The packaging script uses Python 3's standard library and writes `dist/github-quick-preview-<version>.xpi`. It reads the version from the manifest and produces a reproducible archive containing only the files under `extension/`. This package is unsigned; use a temporary install for development or submit it to Mozilla for signing before distributing it for permanent installation.
+The packaging script uses Python 3's standard library and produces reproducible archives. By default it builds both browsers:
+
+| Output | Purpose |
+| --- | --- |
+| `dist/github-quick-preview-chromium/` | Load unpacked in Dia or Chrome |
+| `dist/github-quick-preview-<version>-chromium.zip` | Distribute the Chromium build |
+| `dist/github-quick-preview-<version>.xpi` | Submit the unsigned Firefox build to Mozilla for signing |
+
+Use `python3 scripts/package.py --browser chromium` or `--browser firefox` to build only one browser. The Chromium build changes the manifest to version 3 and removes Firefox-specific settings. It copies the viewer unchanged and adds no permissions or background process. For Chromium development, load `dist/github-quick-preview-chromium` and rebuild, reload the extension, and reload the GitHub tab after changing the source.
 
 To test the viewer, run:
 
@@ -56,6 +78,8 @@ python3 scripts/test-server.py
 Open `http://127.0.0.1:8765/tests/fixture.html` and try the controls. To run the automated browser checks, evaluate the contents of `tests/verify.js` in that page's developer console. The fixture uses local SVG images over HTTP and changes its URL to imitate a pull request route. The test server counts image requests when they arrive, so the network check detects requests before they finish. See [VERIFICATION.md](VERIFICATION.md) for coverage.
 
 ## Signing releases
+
+Publish Chromium ZIPs under `chromium-v<version>` tags. Users extract the ZIP and load its folder through Developer mode as described above.
 
 Submit the generated XPI to the [Mozilla Add-on Developer Hub](https://addons.mozilla.org/developers/) using the **On your own** distribution option. This signs the extension for distribution through GitHub without listing it in Mozilla's public catalog. Download the signed XPI from the submission and attach it to a GitHub release.
 

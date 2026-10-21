@@ -1,5 +1,9 @@
 # Verification
 
+The Chromium 1.0.2 package was checked on October 21, 2026. All 25 browser checks below passed again in the collaborative Chromium browser. The ZIP contains only `manifest.json` and `preview.js`; the viewer matches the shared source byte for byte. Its Manifest V3 configuration keeps the `https://github.com/*` content-script match and adds no API permissions or background process. Both Chromium and Firefox archives passed integrity and reproducibility checks.
+
+The Chromium folder was loaded in Dia 1.53.0 through **Load unpacked** with Developer mode enabled. Dia shows GitHub Quick Preview 1.0.2 enabled with no extension errors. On a public GitHub issue with four screenshots, opening the first image displayed the viewer, Right moved to the second image, Left returned to the first, and Escape restored focus to the original screenshot link on the same issue page. These checks used the installed extension and actual keyboard input.
+
 Version 1.0.2 passed syntax checking and Mozilla's `web-ext lint` with zero errors, warnings, or notices. The generated XPI passed archive integrity and reproducibility checks.
 
 All 25 browser checks in `tests/verify.js` passed against `tests/fixture.html`. They cover:
