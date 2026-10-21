@@ -1,0 +1,27 @@
+scripts/package.py
+  s_db749aa7a16813::t_0d55a54134ca82 1,4,9-15,18-56
+CHANGELOG.md
+  s_db749aa7a16813::t_899e2a1bc8c233 3-8
+VERIFICATION.md
+  s_db749aa7a16813::t_3b78ffdd6b812a 3-4,6
+  s_db749aa7a16813::t_f04420aa86604c 5
+README.md
+  s_db749aa7a16813::t_899e2a1bc8c233 3,20-33,36,44,52,54,62-70,82
+  s_db749aa7a16813::t_4d1b443d4ccdaf 83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "91dc74ae2fd8f27f0162ce50a87db2814ff34d82",
+  "prompts": {},
+  "sessions": {
+    "s_db749aa7a16813": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a10eb1-fe8a-74c2-aa0d-f7afc24e3af6",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Brandon Ly <26473824+brandonnly@users.noreply.github.com>"
+    }
+  }
+}
